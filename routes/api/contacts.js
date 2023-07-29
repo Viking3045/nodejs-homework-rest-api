@@ -17,13 +17,13 @@ router.post("/",
     schemas.addSchema),
      ctrl.addContact);
 
-router.delete("/:id", ctrl.removeContact);
+router.delete("/:id", isValidId, ctrl.removeContact);
 
-router.put("/:id", validateBody(
+router.put("/:id", isValidId, validateBody(
     schemas.addSchema
 ), ctrl.updateById);
 
-router.patch("/:id/favorite", checkBody, validateBody(
+router.patch("/:id/favorite", isValidId, checkBody, validateBody(
     schemas.updateAddSchema
 ), ctrl.updateStatusContact);
 
